@@ -1,14 +1,14 @@
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:21-jre
 
-WORKDIR /app
+WORKDIR /server
 
-# install curl
-RUN apt-get update && apt-get install -y curl
+RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
-# download paper (contoh 1.20.4)
-RUN curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/497/downloads/paper-1.20.4-497.jar
+# Download Paper (1.21.x)
+RUN curl -o paper.jar https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/30/downloads/paper-1.21.1-30.jar
 
 COPY start.sh .
+COPY eula.txt .
 
 RUN chmod +x start.sh
 
