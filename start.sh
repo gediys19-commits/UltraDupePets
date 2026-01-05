@@ -1,7 +1,9 @@
-#!/bin/bash
-java -Xms2G -Xmx10G \
--XX:+UseG1GC \
--XX:MaxGCPauseMillis=200 \
--XX:+ParallelRefProcEnabled \
--XX:+DisableExplicitGC \
--jar server.jar --nogui
+#!/bin/sh
+
+MEMORY=${MEMORY:-2G}
+PORT=${PORT:-25565}
+
+java -Xms$MEMORY -Xmx$MEMORY \
+  -jar paper.jar \
+  --nogui \
+  --port $PORT
